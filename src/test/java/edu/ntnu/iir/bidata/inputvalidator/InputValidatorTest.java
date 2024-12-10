@@ -153,4 +153,20 @@ class InputValidatorTest {
         assertNull(result, "Expected null due to repeated invalid inputs.");
         verify(mockScanner, times(4)).nextLine();
     }
+
+    @Test
+    void testGetValidExpirationDate_FebruaryLeapYear() {
+        // Arrange
+        when(mockScanner.nextLine())
+                .thenReturn("2024") // Leap year
+                .thenReturn("2")    // February
+                .thenReturn("29");  // Valid leap day
+
+        // Act
+        LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
+
+        // Assert
+        assertEquals(LocalDate.of(2024, 2, 29), result);
+        verify(mockScanner, times(3)).nextLine();
+    }
 }
