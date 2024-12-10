@@ -169,4 +169,21 @@ class InputValidatorTest {
         assertEquals(LocalDate.of(2024, 2, 29), result);
         verify(mockScanner, times(3)).nextLine();
     }
+
+    @Test
+    void testGetValidExpirationDate_FebruaryNonLeapYear() {
+        // Arrange
+        when(mockScanner.nextLine())
+                .thenReturn("2023") // Non-leap year
+                .thenReturn("2")    // February
+                .thenReturn("29")   // Invalid day
+                .thenReturn("28");  // Valid day
+
+        // Act
+        LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
+
+        // Assert
+        assertEquals(LocalDate.of(2023, 2, 28), result);
+        verify(mockScanner, times(4)).nextLine();
+    }
 }
