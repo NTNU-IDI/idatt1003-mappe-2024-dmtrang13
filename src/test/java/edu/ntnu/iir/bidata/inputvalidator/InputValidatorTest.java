@@ -203,4 +203,20 @@ class InputValidatorTest {
         verify(mockScanner, times(4)).nextLine();
     }
 
+    @Test
+    void testGetValidExpirationDate_InvalidMonthThenValidInput() {
+        // Arrange
+        when(mockScanner.nextLine())
+                .thenReturn("2023") // Year
+                .thenReturn("13")   // Invalid month
+                .thenReturn("12")   // Valid month
+                .thenReturn("25");  // Valid day
+
+        // Act
+        LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
+
+        // Assert
+        assertEquals(LocalDate.of(2023, 12, 25), result);
+        verify(mockScanner, times(4)).nextLine();
+    }
 }
