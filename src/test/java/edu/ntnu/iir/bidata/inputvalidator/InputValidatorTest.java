@@ -186,4 +186,21 @@ class InputValidatorTest {
         assertEquals(LocalDate.of(2023, 2, 28), result);
         verify(mockScanner, times(4)).nextLine();
     }
+    @Test
+    void testGetValidExpirationDate_DayOutOfRange() {
+        // Arrange
+        when(mockScanner.nextLine())
+                .thenReturn("2023") // Year
+                .thenReturn("4")    // April
+                .thenReturn("31")   // Invalid day
+                .thenReturn("30");  // Valid day
+
+        // Act
+        LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
+
+        // Assert
+        assertEquals(LocalDate.of(2023, 4, 30), result);
+        verify(mockScanner, times(4)).nextLine();
+    }
+
 }
