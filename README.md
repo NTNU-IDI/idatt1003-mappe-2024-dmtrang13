@@ -123,4 +123,4 @@ From the Cookbook Menu, you can:
 ## License
 This project is licensed under the following:
 1. [Eclipse Public License 2.0](https://github.com/junit-team/junit5/blob/main/LICENSE.md): Covers Junit 5.
-2. [MIT License](https://github.com/mockito/mockito/blob/main/LICENSE): Cover Mockito Core and extensions.
+2. [MIT License](https://github.com/mockito/mockito/blob/main/LICENSE): Covers Mockito Core and extensions.
