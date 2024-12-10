@@ -79,32 +79,61 @@ public class InputValidator {
     /**
      * Prompts the user with a message and retrieves a valid expiration date.
      * If the input does not form a valid date, the user is re-prompted until a valid date is provided.
-     * Ensures that the month is between 1 and 12 and the date is between 1 and 31.
+     * Ensures the date is valid for the specified month and year (handles leap years).
      *
      * @param message the prompt message to display to the user.
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
-        while (true) try {
-            System.out.println(message);
+        while (true) {
+            try {
+                System.out.println(message);
 
-            int year = getValidInt("Please enter the expiration year (yyyy) : ");
-            int month = getValidInt("Please enter the expiration month (mm) :");
-            int date = getValidInt("Please enter the expiration date (dd) :");
+                int year = getValidInt("Please enter the expiration year (yyyy): ");
+                int month = getValidInt("Please enter the expiration month (mm): ");
+                int day = getValidInt("Please enter the expiration day (dd): ");
 
-            if (month < 1 || month > 12) {
-                System.out.println("Invalid month. Please enter a month between 1 and 12.");
-                return null;
+                if (month < 1 || month > 12) {
+                    System.out.println("Invalid month. Please enter a month between 1 and 12.");
+                    continue; // Restart the loop
+                }
+
+                // Validate the day for the given month and year
+                if (day < 1 || day > daysInMonth(year, month)) {
+                    System.out.println("Invalid day. Please enter a valid day for the given month.");
+                    continue; // Restart the loop
+                }
+
+                // Return the valid LocalDate
+                return LocalDate.of(year, month, day);
+            } catch (Exception e) {
+                System.out.println("An error occurred: " + e.getMessage());
             }
-            if (date < 1 || date > 31) {
-                System.out.println("Invalid date. Please enter a month between 1 and 31.");
-                return null;
-            }
-
-            return LocalDate.of(year, month, date);
-        } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
-            return null;
         }
+    }
+
+    /**
+     * Determines the number of days in a given month and year.
+     *
+     * @param year  the year.
+     * @param month the month (1-12).
+     * @return the number of days in the specified month.
+     */
+    private int daysInMonth(int year, int month) {
+        return switch (month) {
+            case 2 -> (isLeapYear(year) ? 29 : 28); // February, handle leap year
+            case 4, 6, 9, 11 -> 30; // April, June, September, November
+            default -> 31; // All other months
+        };
+    }
+
+    /**
+     * Checks if a given year is a leap year.
+     *
+     * @param year the year to check.
+     * @return true if the year is a leap year, false otherwise.
+     */
+    private boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 }
