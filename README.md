@@ -101,6 +101,7 @@ From the Cookbook Menu, you can:
    mvn test
 
 2. **Surefire Plugin**: The project uses the Maven Surefire Plugin to execute unit tests. It is pre-configured in the pom.xml to support features such as:
+
    - Running JUnit 5 tests.
    - Adding JVM arguments for testing tools like ByteBuddy:
    ```bash
