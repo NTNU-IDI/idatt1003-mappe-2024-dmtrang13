@@ -16,6 +16,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Constructs a new Ingredient with the specified properties.
+     *
      * @param ingredientName       the name of the ingredient.
      * @param ingredientAmount     the amount of the ingredient.
      * @param ingredientMeasurement the measurement unit of the ingredient.
@@ -32,6 +33,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Retrieves the name of the ingredient.
+     *
      * @return the ingredient name.
      */
     public String getIngredientName() {
@@ -40,6 +42,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Retrieves the amount of the ingredient.
+     *
      * @return the ingredient amount.
      */
     public double getIngredientAmount() {
@@ -48,6 +51,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Sets the amount of the ingredient.
+     *
      * @param ingredientAmount the new ingredient amount.
      */
     public void setIngredientAmount(double ingredientAmount) {
@@ -56,6 +60,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Retrieves the measurement unit of the ingredient.
+     *
      * @return the ingredient measurement unit.
      */
     public String getIngredientMeasurement() {
@@ -64,6 +69,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Sets the measurement unit of the ingredient.
+     *
      * @param ingredientMeasurement the new measurement unit.
      */
     public void setIngredientMeasurement(String ingredientMeasurement) {
@@ -72,6 +78,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Retrieves the expiration date of the ingredient.
+     *
      * @return the expiration date.
      */
     public LocalDate getExpireDate() {
@@ -80,6 +87,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Sets the expiration date of the ingredient.
+     *
      * @param expireDate the new expiration date.
      */
     public void setExpireDate(LocalDate expireDate) {
@@ -88,6 +96,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Retrieves the price of the ingredient.
+     *
      * @return the ingredient price.
      */
     public double getIngredientPrice() {
@@ -96,6 +105,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Sets the price of the ingredient.
+     *
      * @param ingredientPrice the new ingredient price.
      */
     public void setIngredientPrice(double ingredientPrice) {
@@ -105,6 +115,7 @@ public class Ingredient implements Comparable<Ingredient> {
     /**
      * Returns a string representation of the ingredient, including its name, amount, measurement unit,
      * expiration date, and price.
+     *
      * @return a string containing the details of the ingredient.
      */
     @Override
@@ -119,6 +130,7 @@ public class Ingredient implements Comparable<Ingredient> {
 
     /**
      * Compares this ingredient to another based on name (case-insensitive) and expiration date.
+     *
      * @param other the ingredient to compare to.
      * @return a negative value if this ingredient is less than the other, zero if equal, and a positive value if greater.
      */

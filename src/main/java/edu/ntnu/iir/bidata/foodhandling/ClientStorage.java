@@ -3,7 +3,6 @@ package edu.ntnu.iir.bidata.foodhandling;
 import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.model.Ingredient;
 import edu.ntnu.iir.bidata.model.Storage;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,6 +18,7 @@ public class ClientStorage {
 
     /**
      * Initializes and populates a Storage with predefined ingredients.
+     *
      * @return a Storage instance containing predefined ingredients.
      */
     public static Storage init() {
@@ -80,6 +80,7 @@ public class ClientStorage {
 
     /**
      * Displays all the ingredients in the given Storage.
+     *
      * @param storage the Storage to display ingredients from.
      */
     public static void viewAllIngredients(Storage storage) {
@@ -93,6 +94,7 @@ public class ClientStorage {
 
     /**
      * Displays ingredients in the Storage filtered by their name.
+     *
      * @param storage the Storage to search for ingredients.
      */
     public static void getIngredientsByName(Storage storage, InputValidator inputValidator) {
@@ -103,6 +105,7 @@ public class ClientStorage {
 
     /**
      * Allows the user to add a new ingredient to the Storage.
+     *
      * @param storage the Storage where the ingredient will be added.
      */
     public static void addIngredient(Storage storage, InputValidator inputValidator) {
@@ -116,6 +119,7 @@ public class ClientStorage {
 
     /**
      * Removes a specified amount of an ingredient from the Storage.
+     *
      * @param storage the Storage where the ingredient will be removed.
      */
     public static void removeIngredientByNameAndAmount(Storage storage, InputValidator inputValidator) {
@@ -128,6 +132,7 @@ public class ClientStorage {
 
     /**
      * Calculates and displays the total price of all ingredients in the Storage.
+     *
      * @param storage the Storage to calculate the total price from.
      */
     public static void getTotalPrice(Storage storage) {
@@ -143,6 +148,7 @@ public class ClientStorage {
 
     /**
      * Retrieves a list of expired ingredients from the Storage.
+     *
      * @param storage the Storage to check for expired ingredients.
      * @return a list of expired Ingredients.
      */
@@ -156,6 +162,7 @@ public class ClientStorage {
 
     /**
      * Calculates and displays the total price of expired ingredients in the Storage.
+     *
      * @param storage the Storage to calculate the price of expired ingredients.
      * @return the total price of expired ingredients.
      */
@@ -175,6 +182,7 @@ public class ClientStorage {
 
     /**
      * Retrieves a list of ingredients in the Storage that expire within a specified date interval.
+     *
      * @param storage the Storage to search for ingredients.
      * @return a list of Ingredients within the specified date interval.
      */

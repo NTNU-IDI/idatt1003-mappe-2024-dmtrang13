@@ -4,7 +4,6 @@ import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.model.Cookbook;
 import edu.ntnu.iir.bidata.model.Recipe;
 import edu.ntnu.iir.bidata.model.Storage;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -16,6 +15,7 @@ public class ClientCookbook {
 
     /**
      * Initializes and populates a Cookbook with predefined recipes and ingredients.
+     *
      * @return a Cookbook containing predefined recipes.
      */
     public static Cookbook init() {
@@ -117,6 +117,7 @@ public class ClientCookbook {
 
     /**
      * Displays all recipes in the given Cookbook.
+     *
      * @param cookbook the Cookbook whose recipes will be displayed.
      */
     public static void viewAllRecipes(Cookbook cookbook) {
@@ -133,6 +134,7 @@ public class ClientCookbook {
 
     /**
      * Displays recipes in the given Cookbook by their category.
+     *
      * @param cookbook the Cookbook whose recipes will be filtered by category.
      */
     public static void viewRecipesByCategory(Cookbook cookbook, InputValidator inputValidator) {
@@ -148,6 +150,7 @@ public class ClientCookbook {
 
     /**
      * Allows the user to add a new recipe to the given Cookbook.
+     *
      * @param cookbook the Cookbook to which the new recipe will be added.
      */
     public static void addRecipeToCookbook(Cookbook cookbook, InputValidator inputValidator) {
@@ -179,6 +182,7 @@ public class ClientCookbook {
 
     /**
      * Finds and displays a recipe by its name from the given Cookbook.
+     *
      * @param cookbook the Cookbook to search for the recipe.
      */
     public static void findRecipeByName(Cookbook cookbook, InputValidator inputValidator) {
@@ -194,6 +198,7 @@ public class ClientCookbook {
 
     /**
      * Checks if a recipe can be made with the current ingredients in the given Storage.
+     *
      * @param cookbook the Cookbook containing the recipes.
      * @param storage  the Storage containing the available ingredients.
      */
@@ -205,6 +210,7 @@ public class ClientCookbook {
 
     /**
      * Suggests recipes that can be made with the available ingredients in the given Storage.
+     *
      * @param cookbook the Cookbook containing the recipes.
      * @param storage  the Storage containing the available ingredients.
      */

@@ -24,6 +24,7 @@ public class Storage {
     /**
      * Sets the Scanner instance to be used for user input in the Storage class.
      * This method allows overriding the default Scanner for testing or alternative input sources.
+     *
      * @param scanner the Scanner instance to use for user input
      */
     public void setScanner(Scanner scanner) {
@@ -32,6 +33,7 @@ public class Storage {
 
     /**
      * Retrieves all ingredients stored in the system.
+     *
      * @return a list of ingredients in storage.
      */
     public ArrayList<Ingredient> getIngredients() {
@@ -40,6 +42,7 @@ public class Storage {
 
     /**
      * Prompts the user for confirmation to update a specific field to a new value.
+     *
      * @param scanner the Scanner instance for user input.
      * @param field the name of the field being updated.
      * @param newValue the proposed new value for the field.
@@ -52,6 +55,7 @@ public class Storage {
 
     /**
      * Prompts the user to confirm an action described by the given message.
+     *
      * @param scanner the Scanner instance for user input.
      * @param actionDescription a description of the action being confirmed.
      * @return true if the user confirms; false otherwise.
@@ -64,6 +68,7 @@ public class Storage {
     /**
      * Adds an ingredient to the storage. If the ingredient already exists, its amount is updated,
      * and mismatched details can optionally be modified.
+     *
      * @param ingredientName       the name of the ingredient.
      * @param ingredientAmount     the amount of the ingredient.
      * @param ingredientMeasurement the measurement unit of the ingredient.
@@ -126,6 +131,7 @@ public class Storage {
 
     /**
      * Retrieves a list of ingredients by their name.
+     *
      * @param ingredientName the name of the ingredient to search for.
      * @return a list of matching ingredients.
      */
@@ -136,6 +142,7 @@ public class Storage {
 
     /**
      * Removes a specified amount of an ingredient from storage. If the remaining amount is zero or less, the ingredient is removed entirely.
+     *
      * @param ingredientName the name of the ingredient to remove.
      * @param amountToRemove the amount of the ingredient to remove.
      */
@@ -158,6 +165,7 @@ public class Storage {
 
     /**
      * Retrieves ingredients within a specified date range.
+     *
      * @param lower the start of the date range.
      * @param upper the end of the date range.
      * @return a list of ingredients that fall within the date range.

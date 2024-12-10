@@ -1,12 +1,11 @@
 package edu.ntnu.iir.bidata.main;
 
-import edu.ntnu.iir.bidata.ui.UserInterface;
-import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.foodhandling.ClientCookbook;
 import edu.ntnu.iir.bidata.foodhandling.ClientStorage;
+import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.model.Cookbook;
 import edu.ntnu.iir.bidata.model.Storage;
-
+import edu.ntnu.iir.bidata.ui.UserInterface;
 import java.util.Scanner;
 
 /**
@@ -15,7 +14,6 @@ import java.util.Scanner;
  * more modular and testable.
  */
 public class Main {
-
     private final ClientStorage clientStorage;
     private final ClientCookbook clientCookbook;
     private final UserInterface userInterface;

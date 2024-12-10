@@ -30,6 +30,7 @@ public class Cookbook {
 
     /**
      * Retrieves the cookbook containing all recipes.
+     *
      * @return a {@code HashMap} where the keys are recipe IDs and the values are {@code Recipe} objects.
      */
     public HashMap<Integer, Recipe> getCookbook() {
@@ -38,6 +39,7 @@ public class Cookbook {
 
     /**
      * Generates a unique recipe ID based on the category.
+     *
      * @param category the category of the recipe.
      * @return a unique recipe ID.
      * @throws IllegalArgumentException if the category is invalid.
@@ -53,6 +55,7 @@ public class Cookbook {
 
     /**
      * Retrieves and displays recipes by a specified category.
+     *
      * @param category the category to filter recipes by.
      * @return a list of recipes in the specified category.
      */
@@ -69,6 +72,7 @@ public class Cookbook {
 
     /**
      * Adds a new recipe to the cookbook under the specified category.
+     *
      * @param recipe   the recipe to add.
      * @param category the category to associate the recipe with.
      * @return the added recipe with an assigned recipe ID.
@@ -87,6 +91,7 @@ public class Cookbook {
 
     /**
      * Finds a recipe by its name.
+     *
      * @param recipeName the name of the recipe to find.
      * @return the recipe if found; {@code null} otherwise.
      * @throws IllegalArgumentException if the recipe name is null or empty.
@@ -102,6 +107,7 @@ public class Cookbook {
 
     /**
      * Suggests recipes that can be made with the available ingredients in the storage.
+     *
      * @param storage the storage containing the available ingredients.
      * @return a list of recipes that can be made with the available ingredients.
      */

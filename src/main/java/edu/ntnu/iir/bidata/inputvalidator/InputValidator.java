@@ -12,6 +12,7 @@ public class InputValidator {
 
     /**
      * Constructs an InputValidator instance with a specified Scanner.
+     *
      * @param scanner the Scanner to use for input.
      */
     public InputValidator(Scanner scanner) {
@@ -21,6 +22,7 @@ public class InputValidator {
     /**
      * Prompts the user with a message and retrieves a valid integer input.
      * If the input is not a valid integer, the user is re-prompted until a valid integer is provided.
+     *
      * @param message the prompt message to display to the user.
      * @return a valid integer input from the user.
      */
@@ -39,6 +41,7 @@ public class InputValidator {
     /**
      * Prompts the user with a message and retrieves a valid double input.
      * If the input is not a valid double, the user is re-prompted until a valid double is provided.
+     *
      * @param message the prompt message to display to the user.
      * @return a valid double input from the user.
      */
@@ -57,6 +60,7 @@ public class InputValidator {
     /**
      * Prompts the user with a message and retrieves a non-empty string input.
      * If the input is empty, the user is re-prompted until a non-empty string is provided.
+     *
      * @param message the prompt message to display to the user.
      * @return a non-empty string input from the user.
      */
@@ -76,6 +80,7 @@ public class InputValidator {
      * Prompts the user with a message and retrieves a valid expiration date.
      * If the input does not form a valid date, the user is re-prompted until a valid date is provided.
      * Ensures that the month is between 1 and 12 and the date is between 1 and 31.
+     *
      * @param message the prompt message to display to the user.
      * @return a valid LocalDate object representing the expiration date.
      */

@@ -1,12 +1,11 @@
 package edu.ntnu.iir.bidata.ui;
 
-import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.foodhandling.ClientCookbook;
 import edu.ntnu.iir.bidata.foodhandling.ClientStorage;
+import edu.ntnu.iir.bidata.inputvalidator.InputValidator;
 import edu.ntnu.iir.bidata.model.Cookbook;
 import edu.ntnu.iir.bidata.model.Storage;
 
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +21,7 @@ public class UserInterface {
 
     /**
      * Constructs a new UserInterface instance with the specified storage and cookbook clients.
+     *
      * @param clientStorage  the client handling storage operations.
      * @param clientCookbook the client handling cookbook operations.
      * @param storage        the storage system to be managed.
