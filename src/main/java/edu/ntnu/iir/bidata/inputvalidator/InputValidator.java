@@ -114,7 +114,12 @@ public class InputValidator {
                 return null;
             }
             try {
-                return Integer.parseInt(yearInput);
+                int year = Integer.parseInt(yearInput);
+                if (year < 1900 || year > 2100) {
+                    System.out.println("Invalid year. Must be between 1900 and 2100.");
+                } else {
+                    return year;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid year. Please enter a numeric value.");
             }
