@@ -85,29 +85,43 @@ public class InputValidator {
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
+        int attempt = 0;
+
         while (true) {
+            attempt++;
             try {
-                System.out.println(message + " (type 'cancel' to exit)");
+                System.out.printf("%s (Attempt %d, type 'cancel' to exit)%n", message, attempt);
+
                 System.out.print("Year: ");
                 String yearInput = scanner.nextLine();
-                if (yearInput.equalsIgnoreCase("cancel")) return null;
-
+                if (yearInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input canceled by user.");
+                    return null;
+                }
                 int year = Integer.parseInt(yearInput);
 
                 System.out.print("Month (1-12): ");
                 String monthInput = scanner.nextLine();
-                if (monthInput.equalsIgnoreCase("cancel")) return null;
-
+                if (monthInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input canceled by user.");
+                    return null;
+                }
                 int month = Integer.parseInt(monthInput);
-                if (month < 1 || month > 12) throw new IllegalArgumentException("Invalid month.");
+                if (month < 1 || month > 12) {
+                    throw new IllegalArgumentException("Invalid month. Must be between 1 and 12.");
+                }
 
                 System.out.print("Day: ");
                 String dayInput = scanner.nextLine();
-                if (dayInput.equalsIgnoreCase("cancel")) return null;
-
+                if (dayInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input canceled by user.");
+                    return null;
+                }
                 int day = Integer.parseInt(dayInput);
                 int maxDays = daysInMonth(year, month);
-                if (day < 1 || day > maxDays) throw new IllegalArgumentException("Invalid day.");
+                if (day < 1 || day > maxDays) {
+                    throw new IllegalArgumentException(String.format("Invalid day. Must be between 1 and %d.", maxDays));
+                }
 
                 return LocalDate.of(year, month, day);
             } catch (NumberFormatException e) {
