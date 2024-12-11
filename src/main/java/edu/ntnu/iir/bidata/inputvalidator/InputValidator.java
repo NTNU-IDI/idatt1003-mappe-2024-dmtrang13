@@ -87,47 +87,33 @@ public class InputValidator {
     public LocalDate getValidExpirationDate(String message) {
         while (true) {
             try {
-                System.out.println(message);
-                System.out.println("(Type 'cancel' to stop the input process)");
-
+                System.out.println(message + " (type 'cancel' to exit)");
+                System.out.print("Year: ");
                 String yearInput = scanner.nextLine();
-                if (yearInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input process canceled.");
-                    return null;
-                }
+                if (yearInput.equalsIgnoreCase("cancel")) return null;
+
                 int year = Integer.parseInt(yearInput);
 
+                System.out.print("Month (1-12): ");
                 String monthInput = scanner.nextLine();
-                if (monthInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input process canceled.");
-                    return null;
-                }
+                if (monthInput.equalsIgnoreCase("cancel")) return null;
+
                 int month = Integer.parseInt(monthInput);
+                if (month < 1 || month > 12) throw new IllegalArgumentException("Invalid month.");
 
-                if (!isValidMonth(month)) {
-                    System.out.println("Invalid month. Please enter a value between 1 and 12.");
-                    continue;
-                }
-
+                System.out.print("Day: ");
                 String dayInput = scanner.nextLine();
-                if (dayInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input process canceled.");
-                    return null;
-                }
+                if (dayInput.equalsIgnoreCase("cancel")) return null;
+
                 int day = Integer.parseInt(dayInput);
-
                 int maxDays = daysInMonth(year, month);
-
-                if (!isValidDay(day, maxDays)) {
-                    System.out.printf("Invalid day. Please enter a day between 1 and %d.%n", maxDays);
-                    continue;
-                }
+                if (day < 1 || day > maxDays) throw new IllegalArgumentException("Invalid day.");
 
                 return LocalDate.of(year, month, day);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter numeric values for year, month, and day.");
-            } catch (Exception e) {
-                System.out.println("An error occurred: " + e.getMessage());
+                System.out.println("Invalid input. Please enter numeric values.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
