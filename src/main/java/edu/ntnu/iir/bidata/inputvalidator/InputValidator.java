@@ -85,28 +85,50 @@ public class InputValidator {
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
-        try {
-            System.out.println(message);
+        while (true) {
+            try {
+                System.out.println(message);
+                System.out.println("(Type 'cancel' to stop the input process)");
 
-            int year = getValidInt("Please enter the expiration year (yyyy): ");
-            int month = getValidInt("Please enter the expiration month (1-12): ");
+                String yearInput = scanner.nextLine();
+                if (yearInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input process canceled.");
+                    return null;
+                }
+                int year = Integer.parseInt(yearInput);
 
-            if (!isValidMonth(month)) {
-                throw new IllegalArgumentException("Invalid month. Please enter a value between 1 and 12.");
+                String monthInput = scanner.nextLine();
+                if (monthInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input process canceled.");
+                    return null;
+                }
+                int month = Integer.parseInt(monthInput);
+
+                if (!isValidMonth(month)) {
+                    System.out.println("Invalid month. Please enter a value between 1 and 12.");
+                    continue;
+                }
+
+                String dayInput = scanner.nextLine();
+                if (dayInput.equalsIgnoreCase("cancel")) {
+                    System.out.println("Input process canceled.");
+                    return null;
+                }
+                int day = Integer.parseInt(dayInput);
+
+                int maxDays = daysInMonth(year, month);
+
+                if (!isValidDay(day, maxDays)) {
+                    System.out.printf("Invalid day. Please enter a day between 1 and %d.%n", maxDays);
+                    continue;
+                }
+
+                return LocalDate.of(year, month, day);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter numeric values for year, month, and day.");
+            } catch (Exception e) {
+                System.out.println("An error occurred: " + e.getMessage());
             }
-
-            int day = getValidInt("Please enter the expiration day: ");
-            int maxDays = daysInMonth(year, month);
-
-            if (!isValidDay(day, maxDays)) {
-                throw new IllegalArgumentException(String.format("Invalid day. Please enter a day between 1 and %d.", maxDays));
-            }
-
-            return LocalDate.of(year, month, day);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            throw e; // Re-throw the exception for the caller to handle
         }
     }
 
