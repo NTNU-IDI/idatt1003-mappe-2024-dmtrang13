@@ -92,16 +92,16 @@ public class InputValidator {
                 int year = getValidInt("Please enter the expiration year (yyyy): ");
                 int month = getValidInt("Please enter the expiration month (1-12): ");
 
-                if (month < 1 || month > 12) {
-                    System.out.println("Invalid month. Please enter a month between 1 and 12.");
+                if (!isValidMonth(month)) {
+                    System.out.println("Invalid month. Please enter a value between 1 and 12.");
                     continue;
                 }
 
                 int day = getValidInt("Please enter the expiration day: ");
                 int maxDays = daysInMonth(year, month);
 
-                if (day < 1 || day > maxDays) {
-                    System.out.printf("Invalid day. Please enter a day between 1 and %d for the specified month.%n", maxDays);
+                if (!isValidDay(day, maxDays)) {
+                    System.out.printf("Invalid day. Please enter a day between 1 and %d.%n", maxDays);
                     continue;
                 }
 
@@ -121,8 +121,8 @@ public class InputValidator {
      */
     private int daysInMonth(int year, int month) {
         return switch (month) {
-            case 2 -> (isLeapYear(year) ? 29 : 28); // February, handle leap year
-            case 4, 6, 9, 11 -> 30; // April, June, September, November
+            case 2 -> (isLeapYear(year) ? 29 : 28); // February
+            case 4, 6, 9, 11 -> 30; // Months with 30 days
             default -> 31; // All other months
         };
     }
@@ -135,5 +135,26 @@ public class InputValidator {
      */
     private boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    /**
+     * Validates if the month is within the valid range (1-12).
+     *
+     * @param month the month to validate.
+     * @return true if the month is valid, false otherwise.
+     */
+    private boolean isValidMonth(int month) {
+        return month >= 1 && month <= 12;
+    }
+
+    /**
+     * Validates if the day is within the valid range for a given month.
+     *
+     * @param day     the day to validate.
+     * @param maxDays the maximum number of days in the month.
+     * @return true if the day is valid, false otherwise.
+     */
+    private boolean isValidDay(int day, int maxDays) {
+        return day >= 1 && day <= maxDays;
     }
 }
