@@ -2,7 +2,6 @@ package edu.ntnu.idi.idatt.foodhandling;
 import edu.ntnu.idi.idatt.inputvalidator.InputValidator;
 import edu.ntnu.idi.idatt.model.Ingredient;
 import edu.ntnu.idi.idatt.model.Storage;
-import edu.ntnu.iir.idatt.model.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
