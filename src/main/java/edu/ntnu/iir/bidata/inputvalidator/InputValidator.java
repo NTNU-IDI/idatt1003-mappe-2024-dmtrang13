@@ -85,50 +85,40 @@ public class InputValidator {
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
-        int attempt = 0;
+        try {
+            System.out.printf("%s (type 'cancel' to exit)%n", message);
 
-        while (true) {
-            attempt++;
-            try {
-                System.out.printf("%s (Attempt %d, type 'cancel' to exit)%n", message, attempt);
-
-                System.out.print("Year: ");
-                String yearInput = scanner.nextLine();
-                if (yearInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input canceled by user.");
-                    return null;
-                }
-                int year = Integer.parseInt(yearInput);
-
-                System.out.print("Month (1-12): ");
-                String monthInput = scanner.nextLine();
-                if (monthInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input canceled by user.");
-                    return null;
-                }
-                int month = Integer.parseInt(monthInput);
-                if (month < 1 || month > 12) {
-                    throw new IllegalArgumentException("Invalid month. Must be between 1 and 12.");
-                }
-
-                System.out.print("Day: ");
-                String dayInput = scanner.nextLine();
-                if (dayInput.equalsIgnoreCase("cancel")) {
-                    System.out.println("Input canceled by user.");
-                    return null;
-                }
-                int day = Integer.parseInt(dayInput);
-                int maxDays = daysInMonth(year, month);
-                if (day < 1 || day > maxDays) {
-                    throw new IllegalArgumentException(String.format("Invalid day. Must be between 1 and %d.", maxDays));
-                }
-
-                return LocalDate.of(year, month, day);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter numeric values.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            System.out.print("Year: ");
+            String yearInput = scanner.nextLine();
+            if (yearInput.equalsIgnoreCase("cancel")) {
+                return null;
             }
+            int year = Integer.parseInt(yearInput);
+
+            System.out.print("Month (1-12): ");
+            String monthInput = scanner.nextLine();
+            if (monthInput.equalsIgnoreCase("cancel")) {
+                return null;
+            }
+            int month = Integer.parseInt(monthInput);
+            if (month < 1 || month > 12) {
+                throw new IllegalArgumentException("Invalid month. Must be between 1 and 12.");
+            }
+
+            System.out.print("Day: ");
+            String dayInput = scanner.nextLine();
+            if (dayInput.equalsIgnoreCase("cancel")) {
+                return null;
+            }
+            int day = Integer.parseInt(dayInput);
+            int maxDays = daysInMonth(year, month);
+            if (day < 1 || day > maxDays) {
+                throw new IllegalArgumentException(String.format("Invalid day. Must be between 1 and %d.", maxDays));
+            }
+
+            return LocalDate.of(year, month, day);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid input. Please enter numeric values.");
         }
     }
 
@@ -155,26 +145,5 @@ public class InputValidator {
      */
     private boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
-
-    /**
-     * Validates if the month is within the valid range (1-12).
-     *
-     * @param month the month to validate.
-     * @return true if the month is valid, false otherwise.
-     */
-    private boolean isValidMonth(int month) {
-        return month >= 1 && month <= 12;
-    }
-
-    /**
-     * Validates if the day is within the valid range for a given month.
-     *
-     * @param day     the day to validate.
-     * @param maxDays the maximum number of days in the month.
-     * @return true if the day is valid, false otherwise.
-     */
-    private boolean isValidDay(int day, int maxDays) {
-        return day >= 1 && day <= maxDays;
     }
 }
