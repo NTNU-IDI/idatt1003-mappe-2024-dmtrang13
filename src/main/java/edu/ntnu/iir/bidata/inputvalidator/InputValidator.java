@@ -134,24 +134,34 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Retrieves a valid day input from the user for a specific month and year.
+     * Validates that the day is within the appropriate range for the given month and year.
+     * Prompts the user repeatedly until valid input is entered or the user cancels the input.
+     *
+     * @param year the year to determine the range of valid days (handles leap years).
+     * @param month the month to determine the range of valid days (1-12).
+     * @return a valid day as an integer, or null if the user cancels the input.
+     */
     private Integer getValidDay(int year, int month) {
         int maxDays = daysInMonth(year, month);
-        System.out.print("Day: ");
-        String dayInput = scanner.nextLine();
-        if (dayInput.equalsIgnoreCase("cancel")) {
-            System.out.println("Input canceled by user.");
-            return null;
-        }
-        try {
-            int day = Integer.parseInt(dayInput);
-            if (day < 1 || day > maxDays) {
-                System.out.printf("Invalid day. Must be between 1 and %d.%n", maxDays);
+        while (true) {
+            System.out.print("Day: ");
+            String dayInput = scanner.nextLine();
+            if (dayInput.equalsIgnoreCase("cancel")) {
+                System.out.println("Input canceled by user.");
                 return null;
             }
-            return day;
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid day. Please enter a numeric value.");
-            return null;
+            try {
+                int day = Integer.parseInt(dayInput);
+                if (day < 1 || day > maxDays) {
+                    System.out.printf("Invalid day. Must be between 1 and %d.%n", maxDays);
+                } else {
+                    return day;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid day. Please enter a numeric value.");
+            }
         }
     }
 
