@@ -90,24 +90,24 @@ public class InputValidator {
                 System.out.println(message);
 
                 int year = getValidInt("Please enter the expiration year (yyyy): ");
-                int month = getValidInt("Please enter the expiration month (mm): ");
-                int day = getValidInt("Please enter the expiration day (dd): ");
+                int month = getValidInt("Please enter the expiration month (1-12): ");
 
                 if (month < 1 || month > 12) {
                     System.out.println("Invalid month. Please enter a month between 1 and 12.");
-                    continue; // Restart the loop
+                    continue;
                 }
 
-                // Validate the day for the given month and year
-                if (day < 1 || day > daysInMonth(year, month)) {
-                    System.out.println("Invalid day. Please enter a valid day for the given month.");
-                    continue; // Restart the loop
+                int day = getValidInt("Please enter the expiration day: ");
+                int maxDays = daysInMonth(year, month);
+
+                if (day < 1 || day > maxDays) {
+                    System.out.printf("Invalid day. Please enter a day between 1 and %d for the specified month.%n", maxDays);
+                    continue;
                 }
 
-                // Return the valid LocalDate
                 return LocalDate.of(year, month, day);
             } catch (Exception e) {
-                System.out.println("An error occurred: " + e.getMessage());
+                System.out.println("An error occurred while processing the date. Please try again.");
             }
         }
     }
