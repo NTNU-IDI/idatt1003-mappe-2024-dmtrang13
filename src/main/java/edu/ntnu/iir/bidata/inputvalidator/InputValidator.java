@@ -99,38 +99,52 @@ public class InputValidator {
         return LocalDate.of(year, month, day);
     }
 
+    /**
+     * Prompts the user to input a valid year.
+     * Repeats until the user provides valid input or cancels the operation.
+     *
+     * @return the valid year entered by the user, or null if the user cancels.
+     */
     private Integer getValidYear() {
-        System.out.print("Year: ");
-        String yearInput = scanner.nextLine();
-        if (yearInput.equalsIgnoreCase("cancel")) {
-            System.out.println("Input canceled by user.");
-            return null;
-        }
-        try {
-            return Integer.parseInt(yearInput);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid year. Please enter a numeric value.");
-            return null;
+        while (true) {
+            System.out.print("Year: ");
+            String yearInput = scanner.nextLine();
+            if (yearInput.equalsIgnoreCase("cancel")) {
+                System.out.println("Input canceled by user.");
+                return null;
+            }
+            try {
+                return Integer.parseInt(yearInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid year. Please enter a numeric value.");
+            }
         }
     }
 
+    /**
+     * Prompts the user to input a valid month (1-12).
+     * Repeats until the user provides valid input or cancels the operation.
+     *
+     * @return the valid month entered by the user, or null if the user cancels.
+     */
     private Integer getValidMonth() {
-        System.out.print("Month (1-12): ");
-        String monthInput = scanner.nextLine();
-        if (monthInput.equalsIgnoreCase("cancel")) {
-            System.out.println("Input canceled by user.");
-            return null;
-        }
-        try {
-            int month = Integer.parseInt(monthInput);
-            if (month < 1 || month > 12) {
-                System.out.println("Invalid month. Must be between 1 and 12.");
+        while (true) {
+            System.out.print("Month (1-12): ");
+            String monthInput = scanner.nextLine();
+            if (monthInput.equalsIgnoreCase("cancel")) {
+                System.out.println("Input canceled by user.");
                 return null;
             }
-            return month;
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid month. Please enter a numeric value.");
-            return null;
+            try {
+                int month = Integer.parseInt(monthInput);
+                if (month < 1 || month > 12) {
+                    System.out.println("Invalid month. Must be between 1 and 12.");
+                } else {
+                    return month;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid month. Please enter a numeric value.");
+            }
         }
     }
 
