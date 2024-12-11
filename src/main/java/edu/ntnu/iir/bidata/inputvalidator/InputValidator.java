@@ -85,32 +85,28 @@ public class InputValidator {
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
-        while (true) {
-            try {
-                System.out.println(message);
+        try {
+            System.out.println(message);
 
-                int year = getValidInt("Please enter the expiration year (yyyy): ");
-                int month = getValidInt("Please enter the expiration month (1-12): ");
+            int year = getValidInt("Please enter the expiration year (yyyy): ");
+            int month = getValidInt("Please enter the expiration month (1-12): ");
 
-                if (!isValidMonth(month)) {
-                    System.out.println("Invalid month. Please enter a value between 1 and 12.");
-                    continue; // Restart the loop
-                }
-
-                int day = getValidInt("Please enter the expiration day: ");
-                int maxDays = daysInMonth(year, month);
-
-                if (!isValidDay(day, maxDays)) {
-                    System.out.printf("Invalid day. Please enter a day between 1 and %d.%n", maxDays);
-                    continue; // Restart the loop
-                }
-
-                // Valid date, return it
-                return LocalDate.of(year, month, day);
-
-            } catch (Exception e) {
-                System.out.println("An error occurred while processing the date. Please try again.");
+            if (!isValidMonth(month)) {
+                throw new IllegalArgumentException("Invalid month. Please enter a value between 1 and 12.");
             }
+
+            int day = getValidInt("Please enter the expiration day: ");
+            int maxDays = daysInMonth(year, month);
+
+            if (!isValidDay(day, maxDays)) {
+                throw new IllegalArgumentException(String.format("Invalid day. Please enter a day between 1 and %d.", maxDays));
+            }
+
+            return LocalDate.of(year, month, day);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            throw e; // Re-throw the exception for the caller to handle
         }
     }
 

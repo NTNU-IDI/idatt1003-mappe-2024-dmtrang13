@@ -143,15 +143,18 @@ class InputValidatorTest {
         when(mockScanner.nextLine())
                 .thenReturn("abcd") // Invalid year
                 .thenReturn("99")   // Invalid year again
+                .thenReturn("2023") // Valid year
+                .thenReturn("13")   // Invalid month
                 .thenReturn("12")   // Valid month
-                .thenReturn("32");  // Invalid day
+                .thenReturn("32")   // Invalid day
+                .thenReturn("25");  // Valid day
 
         // Act
         LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
 
         // Assert
-        assertNull(result, "Expected null due to repeated invalid inputs.");
-        verify(mockScanner, times(4)).nextLine();
+        assertEquals(LocalDate.of(2023, 12, 25), result);
+        verify(mockScanner, times(7)).nextLine();
     }
 
     @Test
