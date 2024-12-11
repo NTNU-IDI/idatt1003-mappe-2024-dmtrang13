@@ -158,6 +158,20 @@ class InputValidatorTest {
     }
 
     @Test
+    void testGetValidExpirationDate_UserCancels() {
+        // Arrange
+        when(mockScanner.nextLine())
+                .thenReturn("cancel"); // User cancels immediately
+
+        // Act
+        LocalDate result = inputValidator.getValidExpirationDate("Enter an expiration date:");
+
+        // Assert
+        assertNull(result, "Expected null when user cancels input.");
+        verify(mockScanner, times(1)).nextLine();
+    }
+
+    @Test
     void testGetValidExpirationDate_FebruaryLeapYear() {
         // Arrange
         when(mockScanner.nextLine())
