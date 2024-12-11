@@ -85,40 +85,73 @@ public class InputValidator {
      * @return a valid LocalDate object representing the expiration date.
      */
     public LocalDate getValidExpirationDate(String message) {
+        System.out.printf("%s (type 'cancel' to exit)%n", message);
+
+        Integer year = getValidYear();
+        if (year == null) return null;
+
+        Integer month = getValidMonth();
+        if (month == null) return null;
+
+        Integer day = getValidDay(year, month);
+        if (day == null) return null;
+
+        return LocalDate.of(year, month, day);
+    }
+
+    private Integer getValidYear() {
+        System.out.print("Year: ");
+        String yearInput = scanner.nextLine();
+        if (yearInput.equalsIgnoreCase("cancel")) {
+            System.out.println("Input canceled by user.");
+            return null;
+        }
         try {
-            System.out.printf("%s (type 'cancel' to exit)%n", message);
+            return Integer.parseInt(yearInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid year. Please enter a numeric value.");
+            return null;
+        }
+    }
 
-            System.out.print("Year: ");
-            String yearInput = scanner.nextLine();
-            if (yearInput.equalsIgnoreCase("cancel")) {
-                return null;
-            }
-            int year = Integer.parseInt(yearInput);
-
-            System.out.print("Month (1-12): ");
-            String monthInput = scanner.nextLine();
-            if (monthInput.equalsIgnoreCase("cancel")) {
-                return null;
-            }
+    private Integer getValidMonth() {
+        System.out.print("Month (1-12): ");
+        String monthInput = scanner.nextLine();
+        if (monthInput.equalsIgnoreCase("cancel")) {
+            System.out.println("Input canceled by user.");
+            return null;
+        }
+        try {
             int month = Integer.parseInt(monthInput);
             if (month < 1 || month > 12) {
-                throw new IllegalArgumentException("Invalid month. Must be between 1 and 12.");
-            }
-
-            System.out.print("Day: ");
-            String dayInput = scanner.nextLine();
-            if (dayInput.equalsIgnoreCase("cancel")) {
+                System.out.println("Invalid month. Must be between 1 and 12.");
                 return null;
             }
-            int day = Integer.parseInt(dayInput);
-            int maxDays = daysInMonth(year, month);
-            if (day < 1 || day > maxDays) {
-                throw new IllegalArgumentException(String.format("Invalid day. Must be between 1 and %d.", maxDays));
-            }
-
-            return LocalDate.of(year, month, day);
+            return month;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid input. Please enter numeric values.");
+            System.out.println("Invalid month. Please enter a numeric value.");
+            return null;
+        }
+    }
+
+    private Integer getValidDay(int year, int month) {
+        int maxDays = daysInMonth(year, month);
+        System.out.print("Day: ");
+        String dayInput = scanner.nextLine();
+        if (dayInput.equalsIgnoreCase("cancel")) {
+            System.out.println("Input canceled by user.");
+            return null;
+        }
+        try {
+            int day = Integer.parseInt(dayInput);
+            if (day < 1 || day > maxDays) {
+                System.out.printf("Invalid day. Must be between 1 and %d.%n", maxDays);
+                return null;
+            }
+            return day;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid day. Please enter a numeric value.");
+            return null;
         }
     }
 
