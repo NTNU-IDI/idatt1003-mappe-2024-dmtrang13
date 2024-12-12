@@ -16,12 +16,43 @@
 
     <build>
         <plugins>
+            <!-- Exec Maven Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version> <!-- Use the latest stable version -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>edu.ntnu.idi.idatt.main.Main</mainClass>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Jar Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>edu.ntnu.idi.idatt.main.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <!-- Add the necessary JVM argument -->
                     <argLine>
                         -XX:+EnableDynamicAgentLoading
                         -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.15.4/byte-buddy-agent-1.15.4.jar
@@ -30,6 +61,7 @@
             </plugin>
         </plugins>
     </build>
+
 
     <dependencies>
         <!-- JUnit 5 -->

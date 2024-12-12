@@ -92,7 +92,11 @@ From the Cookbook Menu, you can:
 2. Run the Application: Execute the JAR file:
    ```bash
    java -jar target/Food-1.0-SNAPSHOT.jar
-
+   ```
+   alternatively
+      ```bash
+      mvn exec:java -Dexec.mainClass="edu.ntnu.idi.idatt.main"
+     ```
 ---
 
 ## Testing
